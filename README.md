@@ -1,113 +1,85 @@
 ![Title Image lol](https://media.fab.com/image_previews/gallery_images/a9acc7c8-9040-40c1-b5a0-93755beca0a9/730f4cbf-fbc8-49f3-9f7e-8c667b0e3f21.jpg)
 
-**Perfectly Optimized** is a Unreal Engine 5 starter template made to deliver performance gains on lower-end hardware.
+> [!WARNING]
+> **Real-time lighting does not work in this template.** All lighting must be baked. Movable lights will have no effect without additional configuration.
+>
+> If you are converting an existing project to use this template, **back up your project first**. Disabling Lumen and Virtual Shadow Maps can break existing lighting setups and is not easily reversible.
 
-Unreal Engine 5’s default configuration prioritizes ray-traced global illumination and virtualized geometry. While systems such as **Nanite** and **Lumen** work effectively on modern GPUs, they can overwhelm older GPUs and integrated graphics.
+# Perfectly Optimized — UE5 Mobile Performance Template
 
-This template changes the UE5 rendering pipeline for **stability and low GPU cost**, delivering performance closer to Unity forward rendered games.
+A minimal Unreal Engine 5 starter template built for **Android and mobile hardware**. Replaces UE5's default ray-traced, virtualized rendering pipeline with a lightweight configuration suited to mobile GPUs and low-power devices.
 
----
-
-## Overview
-
-- Vulkan-based rendering  
-- High-end UE5 rendering features disabled by default  
-- Optimized for high and stable frame rates on mobile (android)
-- Clean, lightweight template for performance  
+> If Lumen, Nanite, or DX12 overhead is holding your mobile project back — this is your starting point.
 
 ---
 
-## Key Modifications
+## Why This Exists
 
-### Rendering Backend
-
-- Switched to **Vulkan**
-- Improved compatibility with mobile and VR systems
-- Reduced shader runtime cost
-
-### Anti-Aliasing
-
-- Anti-aliasing disabled
-
-### Lighting Pipeline
-
-- **Lumen fully disabled**
-- No real-time global illumination or reflections
-
-### Geometry and Virtualization
-
-- **Nanite disabled by default**
-- Avoids virtualized geometry processing
-
-### Reduced Package Size
-
-- **Disabled Prerequisites installer**
-- Exclude Editor Content While Cooking
-- Exclude Movies while staging
-
-### Additional Performance-Focused Changes
-
-- Reduced unecessary post processing
-- Virtual Shadow Maps disabled
-- Clean project configuration with no unnecessary runtime systems
+UE5's defaults are designed for high-end desktop GPUs. On mobile hardware, features like Lumen GI and Virtual Shadow Maps are either unsupported or cause severe performance drops. This template disables those systems upfront so you're building on a **stable, predictable baseline** suited to Android targets.
 
 ---
 
-## Technical Details
+## What's Changed
 
-**Features**
-- Vulkan-rendered UE5 template optimized for mobile
-- Lightweight sample maps with performance-focused settings  
+### Renderer
+| Setting | Default UE5 | This Template |
+|---|---|---|
+| RHI | DirectX 12 | **Vulkan** |
+| Anti-Aliasing | TAA | **Disabled** |
+| Global Illumination | Lumen | **Disabled (baked)** |
+| Reflections | Lumen | **Disabled** |
+| Shadows | Virtual Shadow Maps | **Disabled** |
+| Geometry | Nanite | **Disabled** |
 
-**Number of Blueprints**
-- None
+### Post Processing
+Unnecessary post-process passes removed to reduce per-frame GPU cost.
 
-**Number of Maps**
-- 1
-
-**Input**
-- None
-*(No gameplay input bindings beyond engine defaults.)*
-
-**Network Replicated**
-- No
-
-**Supported Development Platforms**
-- Android: Yes
-- IOS: No
-
-**Documentation**
-- Included in this repository
+### Package / Build
+- Prerequisites installer removed
+- Editor content excluded from cook
+- Movies excluded from staging
 
 ---
 
-## Intended Use Cases
+## Intended For
 
-- Developers targeting VR Systems and Mobile Games
-- Performance-sensitive prototypes and experiments  
-- Indie projects requiring a lightweight UE5 Project
-- Stylized, low-poly, or small-scale 3D projects  
-- Developers transitioning from Unity rendering to UE5
+- Android mobile targets
+- VR projects on mobile hardware
+- Stylized, low-poly, or small-scale 3D projects
+- Performance-sensitive prototypes
+- Developers transitioning from Unity to UE5
+
+## Not Intended For
+
+- iOS (not supported)
+- Cinematic or high-fidelity rendering
+- Projects requiring dynamic global illumination or real-time shadows
 
 ---
 
-## What This Template Is Not
+## Contents
 
-- Not a gameplay framework  
-- Not a visual showcase  
-- Not a Nanite or Lumen demonstration  
-- Not intended for high-end or cinematic rendering
-
-This template exists to provide a **clean, fast, and predictable starting point** for Unreal Engine 5 projects where performance is a primary concern.
+| | |
+|---|---|
+| Blueprints | None |
+| Maps | 1 (lightweight sample scene) |
+| Input Bindings | None |
+| Network Replication | No |
+| Platform Support | Android only |
 
 ---
 
 ## Getting Started
 
-1. Clone/download this repository or download from fab
-2. Open the `.uproject` file using Unreal Engine 5  
-3. **Build lighting**
-4. Begin development with a performance-optimized baseline
+```
+1. Clone or download this repository (or grab it from Fab)
+2. Open the .uproject in Unreal Engine 5
+3. Build lighting (required — Lumen is disabled)
+4. Start building
+```
+
 ---
 
+## License
 
+See [LICENSE](LICENSE) for details.
